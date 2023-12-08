@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+   <ImageView
+       android:id="@+id/news_image"
+       android:layout_width="match_parent"
+       android:layout_height="250dp"
+       />
+
+    <TextView
+        android:id="@+id/news_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/source_news_color"
+        android:textSize="15dp"
+        android:text="BBC NEWS"
+        android:paddingStart="12dp"
+        />
+
+    <TextView
+        android:id="@+id/news_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/newsDescriptionColor"
+        android:textSize="18dp"
+        android:text="Why are football's biggest clubs starting a new
+tournament?"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/news_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/source_news_color"
+        android:layout_gravity="end"
+        android:textSize="15dp"
+        android:text="3 hours ago"
+        android:paddingEnd="12dp"/>
+
+    <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginHorizontal="14dp">
+    <TextView
+        android:id="@+id/news_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:maxLines="15"
+        android:padding="8dp"
+        android:text="Why are football's biggest clubs starting a new
+tournament Why are football’s biggest clubs
+starting a new tournamentWhy are football’s biggest
+clubs starting a new tournamentWhy are football’s
+biggest clubs starting a new tournamentWhy are
+football’s biggest clubs starting a new tournament.
+Why are football’s biggest clubs starting a new
+tournamentWhy are football’s biggest clubs starting
+a new tournamentWhy are football’s biggest clubs
+starting a new tournamentWhy are football’s biggest
+clubs starting a new tournamentWhy are football’s
+biggest clubs starting a new tournamentWhy are
+football’s biggest clubs starting a new tournament Why
+are football’s biggest clubs starting a new tournament"
+        />
+
+</androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

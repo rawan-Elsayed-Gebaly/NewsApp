@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.newsapp_v2.viewModel.NewsViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="onImageClick"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <TextView
+        android:id="@+id/pick_category_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="8dp"
+        android:text="Pick Your Category of Interest"
+        android:textColor="@color/homeTextColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/categories_layout_raw1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pick_category_tv">
+
+        <ImageView
+            android:id="@+id/sports_Cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:keyboardNavigationCluster="false"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/sports"
+            android:tag="sports" />
+
+        <ImageView
+            android:id="@+id/politics_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/politics_img"
+            android:tag="technology" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/categories_layout_raw2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categories_layout_raw1">
+
+        <ImageView
+            android:id="@+id/health_Cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/health_img"
+            android:tag="health" />
+
+        <ImageView
+            android:id="@+id/business_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/business_img"
+            android:tag="business" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/categories_layout_raw3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categories_layout_raw2">
+
+        <ImageView
+            android:id="@+id/environment_Cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/enviroment_img"
+            android:tag="entertainment" />
+
+        <ImageView
+            android:id="@+id/science_Cat"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:onClick="onCategoryClick"
+            android:src="@drawable/science_img"
+            android:tag="science" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

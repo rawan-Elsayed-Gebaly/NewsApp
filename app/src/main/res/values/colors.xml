@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#39A552</color>
+    <color name="homeTextColor">#4F5A69</color>
+    <color name="source_news_color">#79828B</color>
+    <color name="newsDescriptionColor">#42505C</color>
+    <color name="spinner_border_color">#39A552</color>
+
+
+
+</resources>
