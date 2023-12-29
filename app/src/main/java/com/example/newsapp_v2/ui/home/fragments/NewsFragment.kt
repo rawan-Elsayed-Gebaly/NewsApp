@@ -18,21 +18,23 @@ import com.example.newsapp_v2.ui.showDialog
 import com.example.newsapp_v2.viewModel.NewsViewModel
 import com.google.android.material.tabs.TabLayout
 
-class NewsFragment:Fragment() {
-    lateinit var viewBinding:NewsFragmentBinding
+class NewsFragment : Fragment() {
+    lateinit var viewBinding: NewsFragmentBinding
     lateinit var viewModel: NewsViewModel
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel= ViewModelProvider(requireActivity())[NewsViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBinding = NewsFragmentBinding.inflate(inflater
-            ,container , false)
+        viewBinding = NewsFragmentBinding.inflate(
+            inflater, container, false
+        )
         return viewBinding.root
 
     }
@@ -45,39 +47,38 @@ class NewsFragment:Fragment() {
     }
 
     private fun intiObservers() {
-         viewModel.shouldShowLoading
-             .observe(viewLifecycleOwner , object :Observer<Boolean>{
-                 override fun onChanged(value: Boolean) {
-                     viewBinding.progressBar.isVisible = value
-                 }
-             })
+        viewModel.shouldShowLoading
+            .observe(viewLifecycleOwner, object : Observer<Boolean> {
+                override fun onChanged(value: Boolean) {
+                    viewBinding.progressBar.isVisible = value
+                }
+            })
 
         viewModel.sourcesLiveData
-            .observe(viewLifecycleOwner){sources->
+            .observe(viewLifecycleOwner) { sources ->
                 bindTabs(sources)
             }
 
         viewModel.newsLiveData
-            .observe(viewLifecycleOwner){
+            .observe(viewLifecycleOwner) {
                 adapter.bindNews(it)
             }
 
         viewModel.getData().observe(viewLifecycleOwner) { data ->
-            Log.e("t" , data)
+            Log.e("t", data)
             viewModel.getNewsSources(data)
 
-            viewModel.errorLiveData.observe(viewLifecycleOwner){
+            viewModel.errorLiveData.observe(viewLifecycleOwner) {
                 handelError(it)
             }
         }
     }
 
-    val adapter= NewsAdapter()
+    val adapter = NewsAdapter()
     private fun initViews() {
-        viewBinding.recyclerView.adapter=adapter
+        viewBinding.recyclerView.adapter = adapter
 
-        adapter.onNewsClickListener = NewsAdapter.onNewsClickListenter {
-            news->
+        adapter.onNewsClickListener = NewsAdapter.onNewsClickListenter { news ->
             viewModel.newsDetailsLiveData.value = news
             replaceFragment(NewsDescriptionFragment())
         }
@@ -90,22 +91,23 @@ class NewsFragment:Fragment() {
 
 
     private fun bindTabs(sources: List<Source?>?) {
-        if(sources==null) return
-        sources.forEach{source ->
-            val tab =  viewBinding.sourceTabLayout.newTab()
-            tab.text= source?.name
+
+        sources?.forEach { source ->
+            val tab = viewBinding.sourceTabLayout.newTab()
+            tab.text = source?.name
             tab.tag = source
             viewBinding.sourceTabLayout.addTab(tab)
         }
         viewBinding.sourceTabLayout.addOnTabSelectedListener(
-            object:TabLayout.OnTabSelectedListener{
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    val source = tab?.tag as Source
+            object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    val source = tab.tag as Source
                     viewModel.getNews(source.id)
 
                 }
-                override fun onTabReselected(tab: TabLayout.Tab?) {
-                    val source = tab?.tag as Source
+
+                override fun onTabReselected(tab: TabLayout.Tab) {
+                    val source = tab.tag as Source
                     viewModel.getNews(source.id)
                 }
 
@@ -113,27 +115,25 @@ class NewsFragment:Fragment() {
                 }
             }
         )
+
+        viewBinding.sourceTabLayout.getTabAt(0)?.select()
+
     }
 
 
-
-    fun handelError(viewError: ViewError){
-        showDialog(message =viewError.message?:
-        viewError.t?.localizedMessage?:"Something went wrong",
-                            posActionName = "Try again" ,
-                            posAction = { dialogInterface, i ->
-                                dialogInterface.dismiss()
-                                viewError.onClick?.onTryAgainClick()
-                            },
-                            negActionName = "Cancel",
-                            negAction = { dialogInterface, i ->
-                                dialogInterface.dismiss()
-                            })
+    fun handelError(viewError: ViewError) {
+        showDialog(message = viewError.message ?: viewError.t?.localizedMessage
+        ?: "Something went wrong",
+            posActionName = "Try again",
+            posAction = { dialogInterface, i ->
+                dialogInterface.dismiss()
+                viewError.onClick?.onTryAgainClick()
+            },
+            negActionName = "Cancel",
+            negAction = { dialogInterface, i ->
+                dialogInterface.dismiss()
+            })
     }
-
-
-
-
 
 
 }
