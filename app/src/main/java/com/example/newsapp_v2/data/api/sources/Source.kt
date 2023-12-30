@@ -1,4 +1,4 @@
-package com.example.newsapp_v2.api.sources
+package com.example.newsapp_v2.data.api.sources
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable

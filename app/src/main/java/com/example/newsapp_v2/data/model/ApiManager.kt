@@ -1,4 +1,4 @@
-package com.example.newsapp_v2.model
+package com.example.newsapp_v2.data.model
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +18,7 @@ class ApiManager {
            }
            return retrofit!!
        }
-       fun getApi():WebServices{
+       fun getApi(): WebServices {
            return getInstance().create(WebServices::class.java)
        }
    }

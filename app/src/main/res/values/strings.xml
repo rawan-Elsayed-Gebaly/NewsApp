@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NewsApp_V2</string>
+    <string name="why_are_football_s_biggest_clubs_starting_a_new_tournament">Why are football\'s biggest clubs starting a new tournament?</string>
     <string-array name="language_array_names">
         <item>English</item>
         <item>Arabic</item>

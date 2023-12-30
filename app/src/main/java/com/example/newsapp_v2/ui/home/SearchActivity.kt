@@ -40,4 +40,5 @@ class SearchActivity:AppCompatActivity() {
         viewBinding.lifecycleOwner = this
         viewBinding.vm = viewModel
     }
+
 }

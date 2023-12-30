@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.newsapp_v2.R
-import com.example.newsapp_v2.api.news.News
+import com.example.newsapp_v2.data.api.news.News
 import com.example.newsapp_v2.databinding.NewsTitleFragmentBinding
 import com.example.newsapp_v2.viewModel.NewsViewModel
 
@@ -43,8 +43,11 @@ class NewsDescriptionFragment : Fragment() {
             .placeholder(R.drawable.splash)
             .into(viewBinding.newsImage)
         viewBinding.newsDescription.text = news?.description
-        viewBinding.newsSource.text = news?.source.toString()
+        viewBinding.newsSource.text = news?.source?.name
         viewBinding.newsTime.text = news?.publishedAt
         viewBinding.newsContent.text = news?.content
+        viewBinding.newsContent.setOnClickListener {
+
+        }
     }
 }

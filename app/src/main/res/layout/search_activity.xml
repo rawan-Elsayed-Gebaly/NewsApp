@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View">
+
+        </import>
         <variable
             name="vm"
             type="com.example.newsapp_v2.viewModel.NewsViewModel" />
@@ -16,7 +19,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintHeight_percent="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,10 +27,11 @@
         android:background="@drawable/app_bar_shape">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             app:layout_constraintHeight_percent="0.7"
             app:layout_constraintWidth_percent="0.75"
+            android:layout_margin="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_close"
                 android:layout_gravity="center"
+                android:onClick="@{()->vm.clearSearchData()}"
                 android:layout_weight="1.25"
             />
             <EditText
@@ -50,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/search_bar_shape"
                 android:hint="Search Articles"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
                 android:textSize="13sp"
                 android:text="@={vm.searchedKeyLiveData}"
                 android:layout_gravity="center"
@@ -74,6 +81,7 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="@{vm.shouldShowLoading?View.VISIBLE:View.GONE}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
