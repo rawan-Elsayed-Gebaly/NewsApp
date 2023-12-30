@@ -9,7 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.newsapp_v2.api.sources.Source
+import com.example.newsapp_v2.data.api.sources.Source
 import com.example.newsapp_v2.databinding.NewsFragmentBinding
 import com.example.newsapp_v2.ui.home.HomeActivity
 import com.example.newsapp_v2.ui.ViewError
@@ -121,7 +121,7 @@ class NewsFragment : Fragment() {
     }
 
 
-    fun handelError(viewError: ViewError) {
+    private fun handelError(viewError: ViewError) {
         showDialog(message = viewError.message ?: viewError.t?.localizedMessage
         ?: "Something went wrong",
             posActionName = "Try again",

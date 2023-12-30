@@ -1,7 +1,7 @@
-package com.example.newsapp_v2.model
+package com.example.newsapp_v2.data.model
 
-import com.example.newsapp_v2.api.news.NewsResponse
-import com.example.newsapp_v2.api.sources.SourcesResponse
+import com.example.newsapp_v2.data.api.news.NewsResponse
+import com.example.newsapp_v2.data.api.sources.SourcesResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -5,12 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newsapp_v2.api.news.News
-import com.example.newsapp_v2.api.news.NewsResponse
-import com.example.newsapp_v2.api.sources.Source
-import com.example.newsapp_v2.api.sources.SourcesResponse
-import com.example.newsapp_v2.model.ApiManager
-import com.example.newsapp_v2.model.Constants
+import com.example.newsapp_v2.data.api.news.News
+import com.example.newsapp_v2.data.api.news.NewsResponse
+import com.example.newsapp_v2.data.api.sources.Source
+import com.example.newsapp_v2.data.api.sources.SourcesResponse
+import com.example.newsapp_v2.data.dataSource.SourcesOnlineDataSourceImpl
+import com.example.newsapp_v2.data.model.ApiManager
+import com.example.newsapp_v2.data.model.Constants
+import com.example.newsapp_v2.data.repository.SoursesRepositoryImpl
+import com.example.newsapp_v2.repository.sourcesRepo.SourcesRepoContract
 import com.example.newsapp_v2.ui.ViewError
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -27,6 +30,12 @@ class NewsViewModel : ViewModel() {
     val errorLiveData = MutableLiveData<ViewError>()
     val data = MutableLiveData<String>()
     val searchedKeyLiveData = MutableLiveData<String>()
+    val sourcesOnlineData: SourcesOnlineDataSourceImpl = SourcesOnlineDataSourceImpl(
+        ApiManager.getApi()
+    )
+    val sourcesRepo: SourcesRepoContract = SoursesRepositoryImpl(
+        sourcesOnlineData
+    )
 
     fun setData(value: String) {
         data.value = value
@@ -69,16 +78,18 @@ class NewsViewModel : ViewModel() {
         }
 
     }
-    fun clearSearchData(){
+
+    fun clearSearchData() {
         searchedKeyLiveData.postValue("")
     }
 
     fun getNewsSources(categoryData: String) {
         viewModelScope.launch {
             try {
-                val response = ApiManager.getApi()
-                    .getSource(Constants.apiKey, categoryData)
-                sourcesLiveData.postValue(response.sources)
+                val sources = sourcesRepo.getSources(
+                    categoryData
+                )
+                sourcesLiveData.postValue(sources)
 
             } catch (e: HttpException) {
                 var errorBodyJsonString: String? = e.response()?.errorBody()?.string()
