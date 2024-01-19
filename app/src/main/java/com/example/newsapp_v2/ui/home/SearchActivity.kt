@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.newsapp_v2.databinding.SearchActivityBinding
 import com.example.newsapp_v2.ui.home.adapter.NewsAdapter
 import com.example.newsapp_v2.viewModel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SearchActivity:AppCompatActivity() {
     lateinit var viewBinding:SearchActivityBinding
     lateinit var viewModel: NewsViewModel
