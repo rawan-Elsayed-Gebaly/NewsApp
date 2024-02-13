@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp_v2.R
-import com.example.newsapp_v2.api.news.News
+import com.example.newsapp_v2.data.api.news.News
 import com.example.newsapp_v2.databinding.ItemNewsBinding
 
 class NewsAdapter(var newsList :List<News?>?=null)
@@ -24,7 +24,7 @@ class NewsAdapter(var newsList :List<News?>?=null)
 
     var onNewsClickListener: onNewsClickListenter?=null
     fun interface onNewsClickListenter{
-        fun onItemClick(news:News)
+        fun onItemClick(news: News)
     }
 
 
